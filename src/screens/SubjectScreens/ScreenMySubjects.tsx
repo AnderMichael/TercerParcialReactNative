@@ -25,7 +25,7 @@ export const ScreenMySubjects = () => {
         />
       </View>
       <View style={styles.listSubjectsBackground}>
-        <Text style={styles.timetable}> Your timetable</Text>
+        <Text style={styles.timetable}> Your Timetable</Text>
         <ScrollView showsVerticalScrollIndicator={false}>
           {context.registeredSubjects.map(subject =>makeCard(subject))}
         </ScrollView>

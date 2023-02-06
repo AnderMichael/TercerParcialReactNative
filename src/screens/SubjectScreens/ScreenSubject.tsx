@@ -1,7 +1,10 @@
+import {useNavigation} from '@react-navigation/native';
 import {Image, StyleSheet, Text, View} from 'react-native';
+import {ButtonApp} from '../../components/LoginComponents/ButtonLogin';
 import {colorsApp} from '../../constants/colorsApp';
 
 export const ScreenSubject = ({route, children}: any) => {
+  const navigation = useNavigation();
   return (
     <>
       <View style={styles.backgroundSubject}>
@@ -28,6 +31,7 @@ export const ScreenSubject = ({route, children}: any) => {
         </View>
       </View>
       {children}
+      <ButtonApp title="Back" action={() => navigation.goBack()} />
     </>
   );
 };
