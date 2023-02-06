@@ -1,10 +1,14 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import {colorsApp} from '../../constants/colorsApp';
 
-export const ScreenSubject = ({route}: any) => {
+export const ScreenSubject = ({route, children}: any) => {
   return (
     <>
       <View style={styles.backgroundSubject}>
+        <Image
+          source={{uri: route.params.image}}
+          style={{height: 150, borderRadius: 40}}
+        />
         <Text style={styles.title}>{route.params.title}</Text>
         <View style={styles.textContainer}>
           <Text style={styles.section}>Horario:</Text>
@@ -14,7 +18,16 @@ export const ScreenSubject = ({route}: any) => {
           <Text style={styles.teacher}>Docente:</Text>
           <Text style={styles.teacher}>{route.params.teacher}</Text>
         </View>
+        <View style={styles.textContainer}>
+          <Text style={styles.campus}>Campus:</Text>
+          <Text style={styles.campus}>{route.params.campus}</Text>
+        </View>
+        <View style={styles.textContainer}>
+          <Text style={styles.id}>ID:</Text>
+          <Text style={styles.id}>{route.params.id}</Text>
+        </View>
       </View>
+      {children}
     </>
   );
 };
@@ -40,13 +53,25 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   section: {
-    fontFamily: 'JosefinSans-Light',
+    fontFamily: 'JosefinSans-SemiBold',
     fontSize: 20,
     color: 'black',
     textAlign: 'left',
   },
   teacher: {
-    fontFamily: 'JosefinSans-Thin',
+    fontFamily: 'JosefinSans-Light',
+    fontSize: 20,
+    color: 'black',
+    textAlign: 'center',
+  },
+  campus: {
+    fontFamily: 'JosefinSans-Light',
+    fontSize: 20,
+    color: 'black',
+    textAlign: 'center',
+  },
+  id: {
+    fontFamily: 'JosefinSans-ThinItalic',
     fontSize: 20,
     color: 'black',
     textAlign: 'center',
