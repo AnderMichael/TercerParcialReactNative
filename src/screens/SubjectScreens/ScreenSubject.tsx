@@ -1,0 +1,54 @@
+import {StyleSheet, Text, View} from 'react-native';
+import {colorsApp} from '../../constants/colorsApp';
+
+export const ScreenSubject = ({route}: any) => {
+  return (
+    <>
+      <View style={styles.backgroundSubject}>
+        <Text style={styles.title}>{route.params.title}</Text>
+        <View style={styles.textContainer}>
+          <Text style={styles.section}>Horario:</Text>
+          <Text style={styles.section}>{route.params.section}</Text>
+        </View>
+        <View style={styles.textContainer}>
+          <Text style={styles.teacher}>Docente:</Text>
+          <Text style={styles.teacher}>{route.params.teacher}</Text>
+        </View>
+      </View>
+    </>
+  );
+};
+
+const styles = StyleSheet.create({
+  textContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  backgroundSubject: {
+    flex: 1,
+    backgroundColor: colorsApp.MUSTARD_COLOR,
+    marginVertical: 10,
+    borderRadius: 40,
+    alignItems: 'stretch',
+    justifyContent: 'space-evenly',
+    paddingHorizontal: 30,
+  },
+  title: {
+    fontFamily: 'JosefinSans-Bold',
+    fontSize: 35,
+    color: 'black',
+    textAlign: 'center',
+  },
+  section: {
+    fontFamily: 'JosefinSans-Light',
+    fontSize: 20,
+    color: 'black',
+    textAlign: 'left',
+  },
+  teacher: {
+    fontFamily: 'JosefinSans-Thin',
+    fontSize: 20,
+    color: 'black',
+    textAlign: 'center',
+  },
+});
