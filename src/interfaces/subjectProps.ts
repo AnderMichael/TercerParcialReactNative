@@ -4,4 +4,5 @@ export interface subjectsProps {
   teacher: any;
   id: any;
   campus?: any;
+  image:any
 }

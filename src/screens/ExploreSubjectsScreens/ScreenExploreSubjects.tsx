@@ -18,7 +18,7 @@ export const ScreenExploreSubjects = () => {
     });
   };
   useEffect(() => {
-    fetchPost()
+    fetchPost();
   }, []);
   return (
     <>
@@ -32,7 +32,15 @@ export const ScreenExploreSubjects = () => {
       <View style={styles.listSubjectsBackground}>
         <Text style={styles.availableForYou}>Available for you</Text>
         <ScrollView showsVerticalScrollIndicator={false}>
-          {subjects.map(subject => <SubjectCard id={subject.id} title={subject.Nombre} teacher={subject.Docente} section={subject.Horario}/>)}
+          {subjects.map(subject => (
+            <SubjectCard
+              id={subject.id}
+              title={subject.Nombre}
+              teacher={subject.Docente}
+              section={subject.Horario}
+              image={subject.image}
+            />
+          ))}
         </ScrollView>
       </View>
     </>
