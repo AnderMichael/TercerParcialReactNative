@@ -1,20 +1,42 @@
-import { useContext } from 'react';
+import {doc, setDoc} from 'firebase/firestore/lite';
+import {useContext} from 'react';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {useSelector} from 'react-redux';
 import {SubjectCard} from '../../components/SubjectCard';
 import {colorsApp} from '../../constants/colorsApp';
-import { RegisteredContext } from '../../contexts/registeredContext';
+import {RegisteredContext} from '../../contexts/registeredContext';
+import {db} from '../../services/firebase';
 
 export const ScreenMySubjects = () => {
-  const context = useContext(RegisteredContext)
-  const makeCard = (subject:any) =>{
-    return <SubjectCard 
-    title={subject.title} 
-    teacher={subject.teacher} 
-    section={subject.section} 
-    campus={'La Paz'} 
-    id={subject.id} 
-    image={subject.image} />;
-  }
+  const context = useContext(RegisteredContext);
+  const {user} = useSelector(store => store.saveUser);
+  const {email} = user;
+  const set = new Set();
+  const saveInFirebase = async (dataSubject: any) => {
+    const docRef = await setDoc(
+      doc(db, `/users/${email}/subjects`, dataSubject.id),
+      {
+        title: dataSubject.title,
+        teacher: dataSubject.teacher,
+        section: dataSubject.section,
+        image: dataSubject.image,
+      },
+    );
+  };
+
+  const makeCard = (subject: any) => {
+    saveInFirebase(subject);
+    return (
+      <SubjectCard
+        title={subject.title}
+        teacher={subject.teacher}
+        section={subject.section}
+        campus={'La Paz'}
+        id={subject.id}
+        image={subject.image}
+      />
+    );
+  };
   return (
     <>
       <View style={styles.title}>
@@ -27,7 +49,7 @@ export const ScreenMySubjects = () => {
       <View style={styles.listSubjectsBackground}>
         <Text style={styles.timetable}> Your Timetable</Text>
         <ScrollView showsVerticalScrollIndicator={false}>
-          {context.registeredSubjects.map(subject =>makeCard(subject))}
+          {context.registeredSubjects.map(subject => makeCard(subject))}
         </ScrollView>
       </View>
     </>

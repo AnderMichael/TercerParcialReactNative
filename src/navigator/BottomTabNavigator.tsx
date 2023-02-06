@@ -7,12 +7,12 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {ScreenUser} from '../screens/ScreenUser';
 import {useEffect, useMemo, useState} from 'react';
 import {RegisteredContext} from '../contexts/registeredContext';
-import { collection, getDocs } from 'firebase/firestore/lite';
-import { db } from '../services/firebase';
-import { useSelector } from 'react-redux';
+import {collection, doc, getDocs, setDoc} from 'firebase/firestore/lite';
+import {db} from '../services/firebase';
+import {useSelector} from 'react-redux';
 export const BottomTabNavigator = () => {
   const Tab = createBottomTabNavigator();
-  const {user} = useSelector(store => store.saveUser)
+  const {user} = useSelector(store => store.saveUser);
   const myMap = new Map<string, any>([
     [
       constantsBottomTabNavigator.mySubjects.tab,
@@ -35,14 +35,16 @@ export const BottomTabNavigator = () => {
   const [registeredSubjects, setRegisteredSubjects] = useState([]);
 
   const fetchPost = async () => {
-    await getDocs(collection(db, `/users/${user.email}/subjects`)).then(querySnapshot => {
-      const newData = querySnapshot.docs.map(doc => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      setRegisteredSubjects(newData);
-    });
+    await getDocs(collection(db, `/users/${user.email}/subjects`))
+      .then(querySnapshot => {
+        const newData = querySnapshot.docs.map(doc => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setRegisteredSubjects(newData);
+      })
   };
+
   useEffect(() => {
     fetchPost();
   }, []);
@@ -52,7 +54,6 @@ export const BottomTabNavigator = () => {
     [registeredSubjects],
   );
 
-  
   return (
     <RegisteredContext.Provider value={listSubjects}>
       <Tab.Navigator

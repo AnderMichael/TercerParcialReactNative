@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {signOut} from '../store/actions/userSignOutAction';
 export const ScreenUser = () => {
   const dispatch = useDispatch();
-  const {user} = useSelector(store => store.saveUser)
+  const {user} = useSelector(store => store.saveUser);
   return (
     <>
       <View style={globalStyles.backgroundApp}>

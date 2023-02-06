@@ -6,7 +6,7 @@ import {ButtonApp} from '../../components/LoginComponents/ButtonLogin';
 import {colorsApp} from '../../constants/colorsApp';
 import {globalStyles} from '../../themes/global';
 import * as yup from 'yup';
-import {signInWithEmailAndPassword} from 'firebase/auth';
+import {signInWithEmailAndPassword, updateProfile} from 'firebase/auth';
 import {useDispatch} from 'react-redux';
 import {login} from '../../store/actions/userLoginAction';
 import {saveUser} from '../../store/actions/saveUserAction';
