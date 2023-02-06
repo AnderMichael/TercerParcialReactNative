@@ -16,24 +16,26 @@ export const SubjectCard = ({
   teacher,
   id,
   campus = 'La Paz',
+  image,
 }: subjectsProps) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
       onPress={() =>
-        navigation.navigate(constantsStackExploreSubjects.subject.title, {
+        navigation.navigate(constantsStackExploreSubjects.subject.title,{
           title,
           section,
           teacher,
           id,
           campus,
+          image
         })
       }>
       <View style={styles.backgroundCard}>
         <View style={styles.imageCardContainer}>
           <Image
             source={{
-              uri: 'https://esports.as.com/2022/04/19/fortnite/Escopeta-asaltadora_1566453368_962172_1440x600.jpg',
+              uri: image,
             }}
             style={{height: 120, borderRadius: 20}}
           />

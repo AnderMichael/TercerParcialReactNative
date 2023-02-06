@@ -1,11 +1,16 @@
+import {Image} from '@rneui/base';
 import {StyleSheet, Text, View} from 'react-native';
-import { ButtonApp } from '../../components/LoginComponents/ButtonLogin';
+import {ButtonApp} from '../../components/LoginComponents/ButtonLogin';
 import {colorsApp} from '../../constants/colorsApp';
 
 export const ScreenSubjectUnjoined = ({route}: any) => {
   return (
     <>
       <View style={styles.backgroundSubject}>
+        <Image
+          source={{uri: route.params.image}}
+          style={{height: 150, borderRadius: 40}}
+        />
         <Text style={styles.title}>{route.params.title}</Text>
         <View style={styles.textContainer}>
           <Text style={styles.section}>Horario:</Text>
@@ -24,7 +29,7 @@ export const ScreenSubjectUnjoined = ({route}: any) => {
           <Text style={styles.teacher}>{route.params.id}</Text>
         </View>
       </View>
-      <ButtonApp title="Join Subject!"  />
+      <ButtonApp title="Join Subject!" />
     </>
   );
 };
